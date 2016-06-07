@@ -5,20 +5,21 @@ public class gate : MonoBehaviour {
 
 	private bool mflag = false;
 	private bool fflag = true;
-	private float targetX, targetY, targetZ;
+	public float vx, vy, vz;
+	public int count;
 
 	// Use this for initialization
 	void Start () {
-		targetX = (float)(this.transform.position.x - 3.5);
-		targetY = (float)(this.transform.position.y + 6);
-		targetZ = (float)(this.transform.position.z - 11);
 	}
-	
+
 	// Update is called once per frame
 	void Update () {
-		if(mflag) {
-	        Camera.main.transform.position = new Vector3(targetX, targetY, targetZ);
-			mflag = false;
+		if(mflag && count < 50) {
+	    Camera.main.transform.position = new Vector3(
+				Camera.main.transform.position.x + vx,
+				Camera.main.transform.position.y + vy,
+				Camera.main.transform.position.z + vz);
+			count++;
 		}
 	}
 
@@ -26,6 +27,13 @@ public class gate : MonoBehaviour {
 		if(fflag) {
 			mflag = true;
 			fflag = false;
+			count = 0;
+			vx = (float)(transform.position.x - 3.5
+				- Camera.main.transform.position.x) / 50;
+			vy = (float)(this.transform.position.y + 6
+				- Camera.main.transform.position.y) / 50;
+			vz = (float)(this.transform.position.z - 11
+				- Camera.main.transform.position.z) / 50;
 		}
 	}
 }
