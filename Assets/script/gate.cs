@@ -3,37 +3,48 @@ using System.Collections;
 
 public class gate : MonoBehaviour {
 
-	private bool mflag = false;
+	public float targetX = 0.5f, targetY = 4.0f, targetZ = -15.0f;
+
 	private bool fflag = true;
-	public float vx, vy, vz;
-	public int count;
+	private int count = 0, step = 50;
+	private Vector3 fromPosition, toPosition;
+	private Quaternion fromRotation, toRotation;
 
 	// Use this for initialization
 	void Start () {
+		toPosition = new Vector3(
+			transform.root.position.x + targetX,
+			transform.root.position.y + targetY,
+			transform.root.position.z + targetZ);
+		toRotation =  Quaternion.LookRotation(
+			new Vector3(-targetX, -targetY, -targetZ));
 	}
 
 	// Update is called once per frame
 	void Update () {
-		if(mflag && count < 50) {
-	    Camera.main.transform.position = new Vector3(
-				Camera.main.transform.position.x + vx,
-				Camera.main.transform.position.y + vy,
-				Camera.main.transform.position.z + vz);
+		if(!fflag && count < step) {
+			Camera.main.transform.position =
+				Vector3.Lerp(fromPosition, toPosition,
+				(float)count / step);
+			Camera.main.transform.rotation =
+				Quaternion.Lerp(fromRotation, toRotation,
+				(float)count / step);
 			count++;
 		}
 	}
 
 	void OnTriggerEnter(Collider other) {
 		if(fflag) {
-			mflag = true;
 			fflag = false;
-			count = 0;
-			vx = (float)(transform.position.x - 3.5
-				- Camera.main.transform.position.x) / 50;
-			vy = (float)(this.transform.position.y + 6
-				- Camera.main.transform.position.y) / 50;
-			vz = (float)(this.transform.position.z - 11
-				- Camera.main.transform.position.z) / 50;
+			fromPosition = new Vector3(
+				Camera.main.transform.position.x,
+				Camera.main.transform.position.y,
+				Camera.main.transform.position.z);
+			fromRotation = new Quaternion(
+				Camera.main.transform.rotation.x,
+				Camera.main.transform.rotation.y,
+				Camera.main.transform.rotation.z,
+				Camera.main.transform.rotation.w);
 		}
 	}
 }
