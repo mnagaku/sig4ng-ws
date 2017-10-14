@@ -13,13 +13,13 @@ public class sound : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		if(!ac) {
-			ac = Resources.Load("235968__tommccann__explosion-01") as AudioClip;
+			ac = Resources.Load("bomb") as AudioClip;
 		}
 		x = transform.localPosition.x;
 		z = transform.localPosition.z;
 		audioSource = gameObject.AddComponent<AudioSource>();
 		audioSource.clip = ac;
-		audioSource.time = 1;
+		audioSource.time = 0;
 	}
 	
 	// Update is called once per frame
