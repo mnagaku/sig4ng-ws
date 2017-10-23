@@ -31,7 +31,6 @@ public class clear_click : MonoBehaviour {
 
 	public void ClickNext(string next)
 	{
-//		Application.LoadLevel(next);
-		Application.LoadLevel("Main"); // for demo
+		UnityEngine.SceneManagement.SceneManager.LoadScene ("Main"); // for demo
 	}
 }
