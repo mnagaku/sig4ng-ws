@@ -3,7 +3,14 @@ using System.Collections;
 
 public class gate : MonoBehaviour {
 
-	public float targetX = 0.5f, targetY = 4.0f, targetZ = -15.0f;
+	[Range(-10.0f, 10.0f)]
+	public float targetX = 0.5f;
+
+	[Range(0.0f, 15.0f)]
+	public float targetY = 10.0f;
+
+	[Range(-10.0f, 10.0f)]
+	public float targetZ = -15.0f;
 
 	private bool fflag = true;
 	private int count = 0, step = 50;
