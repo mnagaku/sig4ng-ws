@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -77,15 +77,17 @@ LightmapSettings:
     m_PVRDirectSampleCount: 32
     m_PVRSampleCount: 500
     m_PVRBounces: 2
-    m_PVRFiltering: 0
+    m_PVRFilterTypeDirect: 0
+    m_PVRFilterTypeIndirect: 0
+    m_PVRFilterTypeAO: 0
     m_PVRFilteringMode: 1
     m_PVRCulling: 1
     m_PVRFilteringGaussRadiusDirect: 1
     m_PVRFilteringGaussRadiusIndirect: 5
     m_PVRFilteringGaussRadiusAO: 2
-    m_PVRFilteringAtrousColorSigma: 1
-    m_PVRFilteringAtrousNormalSigma: 1
-    m_PVRFilteringAtrousPositionSigma: 1
+    m_PVRFilteringAtrousPositionSigmaDirect: 0.5
+    m_PVRFilteringAtrousPositionSigmaIndirect: 2
+    m_PVRFilteringAtrousPositionSigmaAO: 1
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 0
 --- !u!196 &4
@@ -107,6 +109,8 @@ NavMeshSettings:
     manualTileSize: 0
     tileSize: 256
     accuratePlacement: 0
+    debug:
+      m_Flags: 0
   m_NavMeshData: {fileID: 0}
 --- !u!1 &331373368
 GameObject:
@@ -151,6 +155,7 @@ MeshRenderer:
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -166,6 +171,7 @@ MeshRenderer:
   m_PreserveUVs: 1
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -206,7 +212,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &1015348766
+--- !u!1001 &1209377953
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -215,15 +221,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 484438, guid: a13add3da54cb4c8180439f3e80bc9bc, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -70
+      value: -69.949196
       objectReference: {fileID: 0}
     - target: {fileID: 484438, guid: a13add3da54cb4c8180439f3e80bc9bc, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -14
+      value: -14.000364
       objectReference: {fileID: 0}
     - target: {fileID: 484438, guid: a13add3da54cb4c8180439f3e80bc9bc, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -58.1
+      value: -58.10061
       objectReference: {fileID: 0}
     - target: {fileID: 484438, guid: a13add3da54cb4c8180439f3e80bc9bc, type: 2}
       propertyPath: m_LocalRotation.x
@@ -324,7 +330,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-  m_StereoMirrorMode: 0
 --- !u!4 &1949391430
 Transform:
   m_ObjectHideFlags: 8
@@ -454,6 +459,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 23448315369246778, guid: 1dcd18e5cc52c0a4bbf30f40d89d6834,
+        type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 806f3df275edd448daf427047e5705bb, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1dcd18e5cc52c0a4bbf30f40d89d6834, type: 2}
   m_IsPrefabParent: 0
