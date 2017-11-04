@@ -4,7 +4,7 @@ using UnityEditor;
 [InitializeOnLoad]
 public static class LayerLock
 {
-    private const int layer = 8; // base
+    private const int layer = 9; // base
 
     static LayerLock ()
     {
