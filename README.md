@@ -2,7 +2,7 @@
 ## IGDA日本　SIG-for NextGeneration　による子供向けワークショップ教材
 
 ### 仕様
-* Unity2017.1.1f1
+* Unity2017.2.0f3
 
 ### Issue化されてない検討項目
 * （WS）専門用語を減らす
