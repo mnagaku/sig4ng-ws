@@ -19,5 +19,6 @@ public static class LayerLock
             return;
         }
         go.hideFlags |= HideFlags.NotEditable;
+//        go.hideFlags |= HideFlags.HideInHierarchy;
     }
 }
