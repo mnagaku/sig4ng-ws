@@ -19,12 +19,6 @@ public class gate : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		toPosition = new Vector3(
-			transform.root.position.x + targetX,
-			transform.root.position.y + targetY,
-			transform.root.position.z + targetZ);
-		toRotation =  Quaternion.LookRotation(
-			new Vector3(-targetX, -targetY, -targetZ));
 	}
 
 	// Update is called once per frame
@@ -43,6 +37,12 @@ public class gate : MonoBehaviour {
 	void OnTriggerEnter(Collider other) {
 		if(fflag) {
 			fflag = false;
+			toPosition = new Vector3(
+				transform.root.position.x + targetX,
+				transform.root.position.y + targetY,
+				transform.root.position.z + targetZ);
+			toRotation =  Quaternion.LookRotation(
+				new Vector3(-targetX, -targetY, -targetZ));
 			fromPosition = new Vector3(
 				Camera.main.transform.position.x,
 				Camera.main.transform.position.y,
