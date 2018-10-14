@@ -6,7 +6,7 @@ public class StageSelect
 {
     private const int baseLayer = 8; // base
 
-    static void Editable(GameObject obj)
+    private static void Editable(GameObject obj)
     {
         foreach (Transform child in obj.transform)
         {
@@ -15,7 +15,7 @@ public class StageSelect
         obj.hideFlags = HideFlags.None;
     }
 
-    static void Clear()
+    private static void Clear()
     {
         Menu.SetChecked("ステージ選択/ステージ1", false);
         Menu.SetChecked("ステージ選択/ステージ2", false);
@@ -36,7 +36,7 @@ public class StageSelect
         }
     }
 
-    static void DisableBase(GameObject obj)
+    private static void DisableBase(GameObject obj)
     {
         foreach (Transform child in obj.transform)
         {
@@ -51,7 +51,7 @@ public class StageSelect
         }
     }
 
-    static void DisableBase()
+    private static void DisableBase()
     {
         Scene scene = SceneManager.GetSceneByName("Main");
         foreach(var child in scene.GetRootGameObjects())
@@ -60,7 +60,7 @@ public class StageSelect
         }
     }
 
-    static void DisableStage(GameObject obj, string stage)
+    private static void DisableStage(GameObject obj, string stage)
     {
         foreach (Transform child in obj.transform)
         {
@@ -75,7 +75,7 @@ public class StageSelect
         }
     }
 
-    static void DisableStage(string stage)
+    private static void DisableStage(string stage)
     {
         Scene scene = SceneManager.GetSceneByName("Main");
         foreach(var child in scene.GetRootGameObjects())

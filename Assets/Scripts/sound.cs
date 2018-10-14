@@ -5,6 +5,7 @@ using System.Collections.Generic;
 public class sound : MonoBehaviour {
 
 	public AudioClip ac;
+	private float timeElapsed = 0.0f;
 
 	private bool sflag = true;
 	private float x, z;
@@ -12,6 +13,8 @@ public class sound : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		gameObject.GetComponent<Rigidbody>().Sleep();
+
 		if(!ac) {
 			ac = Resources.Load("SE/bomb") as AudioClip;
 		}
@@ -29,6 +32,14 @@ public class sound : MonoBehaviour {
 			System.Math.Abs(transform.localPosition.z - z) > 0.1)) {
 			audioSource.Play();
 			sflag = false;
+		}
+		if(!sflag)
+		{
+			timeElapsed += Time.deltaTime;
+			if(timeElapsed > 5000.0f)
+			{
+				gameObject.GetComponent<Rigidbody>().Sleep();
+			}
 		}
 	}
 }
