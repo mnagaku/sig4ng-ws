@@ -60,7 +60,8 @@ public static class StagePos
                 return;
             }
 
-            Scene scene = SceneManager.GetSceneByName("Main");
+//        Scene scene = SceneManager.GetSceneByName("Main");
+            Scene scene = SceneManager.GetActiveScene();
             foreach(var child in scene.GetRootGameObjects())
             {
                 for(int i = 0; i < 10; i++)
@@ -77,7 +78,8 @@ public static class StagePos
         }
         else if(state == PlayModeStateChange.EnteredEditMode)
         {
-            Scene scene = SceneManager.GetSceneByName("Main");
+//        Scene scene = SceneManager.GetSceneByName("Main");
+        Scene scene = SceneManager.GetActiveScene();
             foreach(var child in scene.GetRootGameObjects())
             {
                 if(child.name == "clearArea")
