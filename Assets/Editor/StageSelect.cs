@@ -31,6 +31,7 @@ public class StageSelect
 
 //        Scene scene = SceneManager.GetSceneByName("Main");
         Scene scene = SceneManager.GetActiveScene();
+
         foreach(var child in scene.GetRootGameObjects())
         {
             Editable(child);
@@ -56,6 +57,7 @@ public class StageSelect
     {
 //        Scene scene = SceneManager.GetSceneByName("Main");
         Scene scene = SceneManager.GetActiveScene();
+
         foreach(var child in scene.GetRootGameObjects())
         {
             DisableBase(child);
@@ -81,6 +83,7 @@ public class StageSelect
     {
 //        Scene scene = SceneManager.GetSceneByName("Main");
         Scene scene = SceneManager.GetActiveScene();
+
         foreach(var child in scene.GetRootGameObjects())
         {
             DisableStage(child, stage);
