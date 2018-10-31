@@ -11,10 +11,13 @@ public class sound : MonoBehaviour {
 	private float x, z;
 	private AudioSource audioSource;
 
-	// Use this for initialization
-	void Start () {
-		gameObject.GetComponent<Rigidbody>().Sleep();
+    void Awake()
+    {
+        gameObject.GetComponent<Rigidbody>().Sleep();
+    }
 
+    // Use this for initialization
+    void Start () {
 		if(!ac) {
 			ac = Resources.Load("SE/bomb") as AudioClip;
 		}
@@ -26,20 +29,25 @@ public class sound : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
 		if(sflag && 
 			(System.Math.Abs(transform.localPosition.x - x) > 0.1 ||
 			System.Math.Abs(transform.localPosition.z - z) > 0.1)) {
 			audioSource.Play();
 			sflag = false;
 		}
-		if(!sflag)
-		{
-			timeElapsed += Time.deltaTime;
-			if(timeElapsed > 5000.0f)
-			{
-				gameObject.GetComponent<Rigidbody>().Sleep();
-			}
-		}
 	}
+
+    void FixedUpdate()
+    {
+        if (!sflag)
+        {
+            timeElapsed += Time.fixedDeltaTime;
+            if (timeElapsed > 5000.0f)
+            {
+                gameObject.GetComponent<Rigidbody>().Sleep();
+            }
+        }
+    }
 }

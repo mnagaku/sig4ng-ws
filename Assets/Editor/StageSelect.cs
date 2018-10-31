@@ -29,7 +29,9 @@ public class StageSelect
         Menu.SetChecked("ステージ選択/ステージ10", false);
         Menu.SetChecked("ステージ選択/全ステージ", false);
 
-        Scene scene = SceneManager.GetSceneByName("Main");
+//        Scene scene = SceneManager.GetSceneByName("Main");
+        Scene scene = SceneManager.GetActiveScene();
+
         foreach(var child in scene.GetRootGameObjects())
         {
             Editable(child);
@@ -53,7 +55,9 @@ public class StageSelect
 
     private static void DisableBase()
     {
-        Scene scene = SceneManager.GetSceneByName("Main");
+//        Scene scene = SceneManager.GetSceneByName("Main");
+        Scene scene = SceneManager.GetActiveScene();
+
         foreach(var child in scene.GetRootGameObjects())
         {
             DisableBase(child);
@@ -77,7 +81,9 @@ public class StageSelect
 
     private static void DisableStage(string stage)
     {
-        Scene scene = SceneManager.GetSceneByName("Main");
+//        Scene scene = SceneManager.GetSceneByName("Main");
+        Scene scene = SceneManager.GetActiveScene();
+
         foreach(var child in scene.GetRootGameObjects())
         {
             DisableStage(child, stage);
