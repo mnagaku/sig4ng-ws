@@ -64,11 +64,11 @@ public class StageSelect
         }
     }
 
-    private static void DisableStage(GameObject obj, string stage)
+    private static void EnableStage(GameObject obj, string stage)
     {
         foreach (Transform child in obj.transform)
         {
-            DisableStage(child.gameObject, stage);
+            EnableStage(child.gameObject, stage);
         }
 
         if (obj.transform.root.gameObject.name != stage)
@@ -79,14 +79,14 @@ public class StageSelect
         }
     }
 
-    private static void DisableStage(string stage)
+    private static void EnableStage(string stage)
     {
 //        Scene scene = SceneManager.GetSceneByName("Main");
         Scene scene = SceneManager.GetActiveScene();
 
         foreach(var child in scene.GetRootGameObjects())
         {
-            DisableStage(child, stage);
+            EnableStage(child, stage);
         }
     }
 
@@ -96,7 +96,7 @@ public class StageSelect
         Clear();
         DisableBase();
         Menu.SetChecked("ステージ選択/ステージ1", true);
-        DisableStage("stage1");
+        EnableStage("ステージ1");
     }
 
     [MenuItem("ステージ選択/ステージ2")]
@@ -105,7 +105,7 @@ public class StageSelect
         Clear();
         DisableBase();
         Menu.SetChecked("ステージ選択/ステージ2", true);
-        DisableStage("stage2");
+        EnableStage("ステージ2");
     }
 
     [MenuItem("ステージ選択/ステージ3")]
@@ -114,7 +114,7 @@ public class StageSelect
         Clear();
         DisableBase();
         Menu.SetChecked("ステージ選択/ステージ3", true);
-        DisableStage("stage3");
+        EnableStage("ステージ3");
     }
 
     [MenuItem("ステージ選択/ステージ4")]
@@ -123,7 +123,7 @@ public class StageSelect
         Clear();
         DisableBase();
         Menu.SetChecked("ステージ選択/ステージ4", true);
-        DisableStage("stage4");
+        EnableStage("ステージ4");
     }
 
     [MenuItem("ステージ選択/ステージ5")]
@@ -132,7 +132,7 @@ public class StageSelect
         Clear();
         DisableBase();
         Menu.SetChecked("ステージ選択/ステージ5", true);
-        DisableStage("stage5");
+        EnableStage("ステージ5");
     }
 
     [MenuItem("ステージ選択/ステージ6")]
@@ -141,7 +141,7 @@ public class StageSelect
         Clear();
         DisableBase();
         Menu.SetChecked("ステージ選択/ステージ6", true);
-        DisableStage("stage6");
+        EnableStage("ステージ6");
     }
 
     [MenuItem("ステージ選択/ステージ7")]
@@ -150,7 +150,7 @@ public class StageSelect
         Clear();
         DisableBase();
         Menu.SetChecked("ステージ選択/ステージ7", true);
-        DisableStage("stage7");
+        EnableStage("ステージ7");
     }
 
     [MenuItem("ステージ選択/ステージ8")]
@@ -159,7 +159,7 @@ public class StageSelect
         Clear();
         DisableBase();
         Menu.SetChecked("ステージ選択/ステージ8", true);
-        DisableStage("stage8");
+        EnableStage("ステージ8");
     }
 
     [MenuItem("ステージ選択/ステージ9")]
@@ -168,7 +168,7 @@ public class StageSelect
         Clear();
         DisableBase();
         Menu.SetChecked("ステージ選択/ステージ9", true);
-        DisableStage("stage9");
+        EnableStage("ステージ9");
     }
 
     [MenuItem("ステージ選択/ステージ10")]
@@ -177,7 +177,7 @@ public class StageSelect
         Clear();
         DisableBase();
         Menu.SetChecked("ステージ選択/ステージ10", true);
-        DisableStage("stage10");
+        EnableStage("ステージ10");
     }
 
     [MenuItem("ステージ選択/全ステージ")]
