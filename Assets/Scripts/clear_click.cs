@@ -28,9 +28,18 @@ public class clear_click : MonoBehaviour {
 		}
 	}
 
-
 	public void ClickNext(string next)
 	{
-		UnityEngine.SceneManagement.SceneManager.LoadScene ("Main"); // for demo
+		UnityEngine.SceneManagement.SceneManager.LoadScene("共通");
+		UnityEngine.SceneManagement.SceneManager.LoadScene("ステージ1", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+		UnityEngine.SceneManagement.SceneManager.LoadScene("ステージ2", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+		UnityEngine.SceneManagement.SceneManager.LoadScene("ステージ3", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+		UnityEngine.SceneManagement.SceneManager.LoadScene("ステージ4", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+		UnityEngine.SceneManagement.SceneManager.LoadScene("ステージ5", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+		UnityEngine.SceneManagement.SceneManager.LoadScene("ステージ6", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+		UnityEngine.SceneManagement.SceneManager.LoadScene("ステージ7", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+		UnityEngine.SceneManagement.SceneManager.LoadScene("ステージ8", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+		UnityEngine.SceneManagement.SceneManager.LoadScene("ステージ9", UnityEngine.SceneManagement.LoadSceneMode.Additive);
+		UnityEngine.SceneManagement.SceneManager.LoadScene("ステージ10", UnityEngine.SceneManagement.LoadSceneMode.Additive);
 	}
 }

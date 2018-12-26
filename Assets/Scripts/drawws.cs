@@ -4,7 +4,7 @@ using System.Collections;
 public class drawws : MonoBehaviour
 {
 	public int charNo = 1;
-	public string siteName = "https://drawws.kgr-lab.com";
+	public string siteName = "https://drawws.kgr-lab.com/draw_data";
 
 	private GameObject armr, arml;
 	private bool flag = false;
