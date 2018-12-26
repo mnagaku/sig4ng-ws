@@ -2,7 +2,7 @@
 ## IGDA日本　SIG-for NextGeneration　による子供向けワークショップ教材
 
 ### 仕様
-* Unity2018.2.11f1
+* Unity2018.3.0f2
 * Standard AssetsのParticleSystemsが必要
   * ParticleSystems\Materials\ParticleGlow.mat
   * ParticleSystems\Materials\ParticleSpark.mat

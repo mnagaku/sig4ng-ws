@@ -1,7 +1,11 @@
-using UnityEngine;
-using UnityEditor;
-using UnityEngine.SceneManagement;
 using System;
+using System.Reflection;
+using UnityEditor;
+using UnityEngine;
+using UnityEngine.Events;
+using UnityEngine.SceneManagement;
+using UnityEditor.SceneManagement;
+
 
 [InitializeOnLoad]
 public static class BallPos
@@ -15,53 +19,11 @@ public static class BallPos
     {
         if(state == PlayModeStateChange.EnteredPlayMode)
         {
-            int startNo = 0;
-            if(Menu.GetChecked("ステージ選択/ステージ1"))
-            {
-                    startNo = 0;
-            }
-            else if(Menu.GetChecked("ステージ選択/ステージ2"))
-            {
-                    startNo = 1;
-            }
-            else if(Menu.GetChecked("ステージ選択/ステージ3"))
-            {
-                    startNo = 2;
-            }
-            else if(Menu.GetChecked("ステージ選択/ステージ4"))
-            {
-                    startNo = 3;
-            }
-            else if(Menu.GetChecked("ステージ選択/ステージ5"))
-            {
-                    startNo = 4;
-            }
-            else if(Menu.GetChecked("ステージ選択/ステージ6"))
-            {
-                    startNo = 5;
-            }
-            else if(Menu.GetChecked("ステージ選択/ステージ7"))
-            {
-                    startNo = 6;
-            }
-            else if(Menu.GetChecked("ステージ選択/ステージ8"))
-            {
-                    startNo = 7;
-            }
-            else if(Menu.GetChecked("ステージ選択/ステージ9"))
-            {
-                    startNo = 8;
-            }
-            else if(Menu.GetChecked("ステージ選択/ステージ10"))
-            {
-                    startNo = 9;
-            }
-            else
-            {
-                return;
-            }
+            var w = EditorWindow.GetWindow<WSPanel>(typeof(WSPanel));
+            var startNo = w.getSelected();
+            startNo = startNo >= 10 ? 0 : startNo;
 
-            Scene scene = SceneManager.GetActiveScene();
+            var scene = SceneManager.GetSceneByName("共通");
 
             // Try to find "firstBall" from root game objects.
             // Move the first ball to the initiali position.
@@ -92,7 +54,7 @@ public static class BallPos
         }
         else if(state == PlayModeStateChange.EnteredEditMode)
         {
-            Scene scene = SceneManager.GetActiveScene();
+            var scene = SceneManager.GetSceneByName("共通");
 
             foreach(var child in scene.GetRootGameObjects())
             {
