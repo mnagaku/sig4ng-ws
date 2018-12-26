@@ -23,7 +23,7 @@ public class object_validator : MonoBehaviour
             {
                 Transform child = transform.parent.GetChild(i);
 
-                Debug.Log(child.position);
+                //Debug.Log(child.position);
 
                 if (child.GetInstanceID() != transform.GetInstanceID())
                 {
