@@ -11,18 +11,6 @@ public class WSButton : MonoBehaviour
         SceneView.onSceneGUIDelegate += OnGUI;
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     static void OnGUI(SceneView sceneView)
     {
         var rect = new Rect(8, 24, 80, 0);
@@ -45,8 +33,8 @@ public class WSButton : MonoBehaviour
                     RaycastHit hitInfo;
                     if (rb && rb.SweepTest(Vector3.down, out hitInfo))
                     {
-                        gobj.transform.Translate(Vector3.down * hitInfo.distance, Space.World);
                         Undo.RecordObject(gobj.transform, "Translate " + gobj.name);
+                        gobj.transform.Translate(Vector3.down * hitInfo.distance, Space.World);
                     }
                 }
             }
@@ -97,6 +85,8 @@ public class WSButton : MonoBehaviour
 
                     Undo.RegisterCreatedObjectUndo(gobj, "Duplicate Object");
 
+                    if (Selection.gameObjects.Length == 1)
+                        Selection.activeObject = gobj;
                 }
             }
         };
