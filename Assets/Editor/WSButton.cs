@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
+using System.Text.RegularExpressions;
 
 public class WSButton : MonoBehaviour
 {
@@ -40,17 +41,22 @@ public class WSButton : MonoBehaviour
             }
             else if (GUILayout.Button("ふやす"))
             {
+                Regex rgx1 = new Regex(@"(^.+) \(([0-9]+)\)");
+                Regex rgx2 = new Regex(@"\(([0-9]+)\)$");
+
                 for (int idx = 0; idx < Selection.gameObjects.Length; idx++)
                 {
-                    if (Selection.gameObjects[idx].GetComponent<object_validator>() == null)
-                        continue;
-
                     if (Selection.gameObjects[idx].isStatic)
                         continue;
 
-                    var gobj = Object.Instantiate(Selection.gameObjects[idx]);
-                    gobj.transform.parent = Selection.gameObjects[idx].transform.parent;
+                    var orig_obj = Selection.gameObjects[idx];
+                    var gobj = Object.Instantiate(orig_obj, orig_obj.transform.parent);
 
+                    gobj.transform.localPosition = orig_obj.transform.localPosition;
+                    gobj.transform.localRotation = orig_obj.transform.localRotation;
+                    gobj.transform.localScale = orig_obj.transform.localScale;
+
+                    // 複製したオブジェクトの位置を、オリジナルと重ならないように少しずらす
                     // 今のところ親オブジェクトにぶら下がっているもの同士をチェックする
                     if (gobj.transform.parent)
                     {
@@ -81,6 +87,44 @@ public class WSButton : MonoBehaviour
                         }
 
                         gobj.transform.position = newPos;
+                    }
+
+                    // リネーム（あまり賢くない）
+                    // 「ドミノ1 (1)」のようなオブジェクトがあれば「ドミノ1 (2)」を作る
+                    // 数値の重複は避ける
+                    {
+                        string bodyname = orig_obj.name;
+                        int number = 1;
+
+                        var m1 = rgx1.Match(gobj.name);
+                        if (m1.Success) // 「ドミノ1」のパターン
+                        {
+                            bodyname = m1.Groups[1].Value;
+                        }
+
+                        // 兄弟から同じ命名体系の中で括弧内の数字が一番 大きなものをさがす
+                        int i = 0, siblingCount = gobj.transform.parent.childCount;
+
+                        while (i < siblingCount)
+                        {
+                            Transform child = gobj.transform.parent.GetChild(i);
+
+                            var m2 = rgx2.Match(child.gameObject.name);
+                            if (child.gameObject.name.StartsWith(bodyname) && m2.Success)
+                            {
+                                Debug.Log(m2.Groups[1].Value);
+                                int t = System.Convert.ToInt32(m2.Groups[1].Value);
+                                if (t > number)
+                                {
+                                    number = t;
+                                }
+                            }
+
+                            i++;
+                        }
+
+                        number++;
+                        gobj.name = bodyname + " (" + number + ")";
                     }
 
                     Undo.RegisterCreatedObjectUndo(gobj, "Duplicate Object");
