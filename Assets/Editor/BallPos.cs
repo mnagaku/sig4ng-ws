@@ -12,7 +12,10 @@ public static class BallPos
 {
     static BallPos()
     {
-        EditorApplication.playModeStateChanged += OnChangedPlayMode;
+        var scene = SceneManager.GetActiveScene();
+        if(scene.name != "title") {
+            EditorApplication.playModeStateChanged += OnChangedPlayMode;
+        }
     }
 
     private static void OnChangedPlayMode(PlayModeStateChange state) 
