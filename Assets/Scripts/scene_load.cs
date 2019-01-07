@@ -18,6 +18,7 @@ public class scene_load : MonoBehaviour
 	[RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.AfterSceneLoad)]
 	static void OnAfterSceneLoadRuntimeMethod()
 	{
+/*
         Debug.Log("OnAfterSceneLoadRuntimeMethod()");
         for(int n = 1; n <= 10; n++) {
             Scene s = SceneManager.GetSceneByName("ステージ"+n);
@@ -25,5 +26,6 @@ public class scene_load : MonoBehaviour
         		SceneManager.LoadScene("ステージ"+n, LoadSceneMode.Additive);
             }
         }
+*/
 	}
 }
