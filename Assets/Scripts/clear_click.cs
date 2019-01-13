@@ -31,6 +31,8 @@ public class clear_click : MonoBehaviour {
 
 	public void ClickNext(string next)
 	{
+		SceneManager.LoadScene("marge");
+/*
 		SceneManager.LoadScene("共通");
         for(int n = 1; n <= 10; n++) {
             Scene s = SceneManager.GetSceneByName("ステージ"+n);
@@ -38,5 +40,6 @@ public class clear_click : MonoBehaviour {
         		SceneManager.LoadScene("ステージ"+n, LoadSceneMode.Additive);
             }
         }
+*/
 	}
 }
