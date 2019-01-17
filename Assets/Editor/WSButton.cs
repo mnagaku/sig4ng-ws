@@ -133,6 +133,10 @@ public class WSButton : MonoBehaviour
                         Selection.activeObject = gobj;
                 }
             }
+            else if (GUILayout.Button("やりなおす"))
+            {
+                Undo.PerformUndo();
+            }
         };
 
         GUILayout.Window(1, rect, func, string.Empty);
