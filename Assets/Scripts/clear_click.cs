@@ -33,9 +33,9 @@ public class clear_click : MonoBehaviour {
 	{
 		SceneManager.LoadScene("共通");
         for(int n = 1; n <= 10; n++) {
-            Scene s = SceneManager.GetSceneByName("ステージ"+n);
+            Scene s = SceneManager.GetSceneByName("ステージ"+string.Format($"{n:d2}"));
             if(!s.IsValid()) {
-        		SceneManager.LoadScene("ステージ"+n, LoadSceneMode.Additive);
+        		SceneManager.LoadScene("ステージ"+string.Format($"{n:d2}"), LoadSceneMode.Additive);
             }
         }
 	}
