@@ -37,15 +37,15 @@ public static class ReopenScenes
             Debug.Log("projectWasLoaded");
 
             EditorSceneManager.OpenScene("Assets/共通.unity");
-            EditorSceneManager.OpenScene("Assets/ステージ1.unity", OpenSceneMode.Additive);
-            EditorSceneManager.OpenScene("Assets/ステージ2.unity", OpenSceneMode.Additive);
-            EditorSceneManager.OpenScene("Assets/ステージ3.unity", OpenSceneMode.Additive);
-            EditorSceneManager.OpenScene("Assets/ステージ4.unity", OpenSceneMode.Additive);
-            EditorSceneManager.OpenScene("Assets/ステージ5.unity", OpenSceneMode.Additive);
-            EditorSceneManager.OpenScene("Assets/ステージ6.unity", OpenSceneMode.Additive);
-            EditorSceneManager.OpenScene("Assets/ステージ7.unity", OpenSceneMode.Additive);
-            EditorSceneManager.OpenScene("Assets/ステージ8.unity", OpenSceneMode.Additive);
-            EditorSceneManager.OpenScene("Assets/ステージ9.unity", OpenSceneMode.Additive);
+            EditorSceneManager.OpenScene("Assets/ステージ01.unity", OpenSceneMode.Additive);
+            EditorSceneManager.OpenScene("Assets/ステージ02.unity", OpenSceneMode.Additive);
+            EditorSceneManager.OpenScene("Assets/ステージ03.unity", OpenSceneMode.Additive);
+            EditorSceneManager.OpenScene("Assets/ステージ04.unity", OpenSceneMode.Additive);
+            EditorSceneManager.OpenScene("Assets/ステージ05.unity", OpenSceneMode.Additive);
+            EditorSceneManager.OpenScene("Assets/ステージ06.unity", OpenSceneMode.Additive);
+            EditorSceneManager.OpenScene("Assets/ステージ07.unity", OpenSceneMode.Additive);
+            EditorSceneManager.OpenScene("Assets/ステージ08.unity", OpenSceneMode.Additive);
+            EditorSceneManager.OpenScene("Assets/ステージ09.unity", OpenSceneMode.Additive);
             EditorSceneManager.OpenScene("Assets/ステージ10.unity", OpenSceneMode.Additive);
 
             var editorAsm = typeof(Editor).Assembly;

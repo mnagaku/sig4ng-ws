@@ -18,8 +18,8 @@ public class WSPanel : EditorWindow
         EditorGUI.BeginChangeCheck ();
         EditorGUILayout.LabelField ("ステージ選択");
         selected = GUILayout.SelectionGrid (selected,
-            new string[]{ "ステージ1", "ステージ2", "ステージ3", "ステージ4", "ステージ5",
-            "ステージ6", "ステージ7", "ステージ8", "ステージ9", "ステージ10", "全ステージ"}, 1);
+            new string[]{ "ステージ01", "ステージ02", "ステージ03", "ステージ04", "ステージ05",
+            "ステージ06", "ステージ07", "ステージ08", "ステージ09", "ステージ10", "全ステージ"}, 1);
         if (EditorGUI.EndChangeCheck ()) {
             Clear();
             if(selected >= 10)
@@ -34,15 +34,15 @@ public class WSPanel : EditorWindow
     }
 //----------
     private static readonly string[] scenefiles = {
-        "ステージ1",
-        "ステージ2",
-        "ステージ3",
-        "ステージ4",
-        "ステージ5",
-        "ステージ6",
-        "ステージ7",
-        "ステージ8",
-        "ステージ9",
+        "ステージ01",
+        "ステージ02",
+        "ステージ03",
+        "ステージ04",
+        "ステージ05",
+        "ステージ06",
+        "ステージ07",
+        "ステージ08",
+        "ステージ09",
         "ステージ10",
         "共通"};
 //----------
