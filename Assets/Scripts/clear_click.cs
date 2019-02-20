@@ -32,11 +32,11 @@ public class clear_click : MonoBehaviour {
 	public void ClickNext(string next)
 	{
 		SceneManager.LoadScene("共通");
-        for(int n = 1; n <= 10; n++) {
-            Scene s = SceneManager.GetSceneByName("ステージ"+string.Format($"{n:d2}"));
-            if(!s.IsValid()) {
-        		SceneManager.LoadScene("ステージ"+string.Format($"{n:d2}"), LoadSceneMode.Additive);
-            }
-        }
+    for(int n = 1; n <= 13; n++) {
+      Scene s = SceneManager.GetSceneByName("ステージ"+string.Format($"{n:d2}"));
+      if(!s.IsValid()) {
+  			SceneManager.LoadScene("ステージ"+string.Format($"{n:d2}"), LoadSceneMode.Additive);
+      }
+    }
 	}
 }

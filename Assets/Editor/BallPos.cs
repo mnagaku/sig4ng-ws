@@ -21,7 +21,7 @@ public static class BallPos
         {
             var w = EditorWindow.GetWindow<WSPanel>(typeof(WSPanel));
             var startNo = w.getSelected();
-            startNo = startNo >= 10 ? 0 : startNo;
+            startNo = startNo >= 13 ? 0 : startNo;
 
             var scene = SceneManager.GetSceneByName("共通");
 
