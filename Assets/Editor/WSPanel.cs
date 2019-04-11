@@ -7,7 +7,7 @@ public class WSPanel : EditorWindow
 {
     private const int baseLayer = 8; // base
 
-    private int selected = 10; // 「全ステージ」を初期選択
+    private int selected = 13; // 「全ステージ」を初期選択
 
     public int getSelected() {
         return selected;
@@ -19,10 +19,11 @@ public class WSPanel : EditorWindow
         EditorGUILayout.LabelField ("ステージ選択");
         selected = GUILayout.SelectionGrid (selected,
             new string[]{ "ステージ01", "ステージ02", "ステージ03", "ステージ04", "ステージ05",
-            "ステージ06", "ステージ07", "ステージ08", "ステージ09", "ステージ10", "全ステージ"}, 1);
+            "ステージ06", "ステージ07", "ステージ08", "ステージ09", "ステージ10", "ステージ11",
+            "ステージ12", "ステージ13", "全ステージ"}, 1);
         if (EditorGUI.EndChangeCheck ()) {
             Clear();
-            if(selected >= 10)
+            if(selected >= 13)
             {
                 Debug.Log("edit 全ステージ");
                 return;
@@ -44,6 +45,9 @@ public class WSPanel : EditorWindow
         "ステージ08",
         "ステージ09",
         "ステージ10",
+        "ステージ11",
+        "ステージ12",
+        "ステージ13",
         "共通"};
 //----------
     private static void Clear()

@@ -19,7 +19,7 @@ public class scene_load : MonoBehaviour
 	static void OnAfterSceneLoadRuntimeMethod()
 	{
         Debug.Log("OnAfterSceneLoadRuntimeMethod()");
-        for(int n = 1; n <= 10; n++) {
+        for(int n = 1; n <= 13; n++) {
             Scene s = SceneManager.GetSceneByName("ステージ"+string.Format($"{n:d2}"));
             if(!s.IsValid()) {
         		SceneManager.LoadScene("ステージ"+string.Format($"{n:d2}"), LoadSceneMode.Additive);
