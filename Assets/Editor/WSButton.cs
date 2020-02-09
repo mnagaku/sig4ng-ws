@@ -12,13 +12,46 @@ public class WSButton : MonoBehaviour
         SceneView.onSceneGUIDelegate += OnGUI;
     }
 
+    static void ContactFloor(GameObject tgtObj)
+    {
+        Rigidbody rb = tgtObj.GetComponent<Rigidbody>();
+        RaycastHit hitInfo;
+        if (rb)
+        {
+            // 下向きにフィッティング
+            if (rb.SweepTest(Vector3.down, out hitInfo))
+            {
+                Undo.RecordObject(tgtObj.transform, "Translate " + tgtObj.name);
+                tgtObj.transform.Translate(Vector3.down * hitInfo.distance, Space.World);
+            }
+            else
+            {
+                Undo.RecordObject(tgtObj.transform, "Translate " + tgtObj.name);
+
+                // 対Terrain的な計算を行う
+                Vector3 bottomPos = tgtObj.transform.position + Vector3.down * tgtObj.transform.localScale.y * 0.5f;
+                // 地上へ引き上げるためのオフセットを得る ... 1.0fは若干決め打ち
+                float offset = 1.0f - bottomPos.y;
+
+                // 移動させる
+                tgtObj.transform.position += Vector3.up * offset;
+
+                // 下向きにフィッティング
+                if (rb.SweepTest(Vector3.down, out hitInfo))
+                {
+                    tgtObj.transform.Translate(Vector3.down * hitInfo.distance, Space.World);
+                }
+            }
+        }
+    }
+
     static void OnGUI(SceneView sceneView)
     {
         var rect = new Rect(8, 24, 80, 0);
 
         GUI.WindowFunction func = id =>
         {
-            if (GUILayout.Button("じめんにつける"))
+            if (GUILayout.Button("じめんにあわせる"))
             {
                 for (int idx = 0; idx < Selection.gameObjects.Length; idx++)
                 {
@@ -30,13 +63,7 @@ public class WSButton : MonoBehaviour
                     if (gobj.isStatic)
                         continue;
 
-                    Rigidbody rb = gobj.GetComponent<Rigidbody>();
-                    RaycastHit hitInfo;
-                    if (rb && rb.SweepTest(Vector3.down, out hitInfo))
-                    {
-                        Undo.RecordObject(gobj.transform, "Translate " + gobj.name);
-                        gobj.transform.Translate(Vector3.down * hitInfo.distance, Space.World);
-                    }
+                    ContactFloor(gobj);
                 }
             }
             else if (GUILayout.Button("ふやす"))
@@ -87,6 +114,7 @@ public class WSButton : MonoBehaviour
                         }
 
                         gobj.transform.position = newPos;
+                        ContactFloor(gobj);
                     }
 
                     // リネーム（あまり賢くない）

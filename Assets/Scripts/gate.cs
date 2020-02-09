@@ -1,7 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEditor;
 
+[ExecuteInEditMode]
 public class gate : MonoBehaviour {
+
+    static int currentActiveStage = -1;
 
     public enum CameraMode
     {
@@ -35,24 +39,63 @@ public class gate : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if(!fflag && count < step) {
-			Camera.main.transform.position =
-				Vector3.Lerp(fromPosition, toPosition,
-				(float)count / step);
-			Camera.main.transform.rotation =
-				Quaternion.Lerp(fromRotation, toRotation,
-				(float)count / step);
-			count++;
-		}
-	}
-
-	void OnTriggerEnter(Collider other)
-    {
-		if(fflag)
+        bool isInEditor = !EditorApplication.isPlaying;
+        if (isInEditor)
         {
-            ApplyCamera(false);
-			fflag = false;
-		}
+            UpdateInEditor();
+        }
+        else
+        {
+            if (!fflag && count < step)
+            {
+                Camera.main.transform.position =
+                    Vector3.Lerp(fromPosition, toPosition,
+                    (float)count / step);
+                Camera.main.transform.rotation =
+                    Quaternion.Lerp(fromRotation, toRotation,
+                    (float)count / step);
+                count++;
+            }
+        }
+    }
+
+    private void UpdateInEditor()
+    {
+        var bc = GetComponent<BoxCollider>();
+        int layerMask = ~LayerMask.GetMask("CameraTrigger");
+        Collider[] colliders = Physics.OverlapBox(bc.bounds.center, bc.bounds.size * 0.5f, Quaternion.identity, layerMask);
+        if (colliders.Length > 0)
+        {
+            foreach (var collider in colliders)
+            {
+                if (collider.gameObject.tag == "Movable")
+                {
+                    Debug.LogErrorFormat("{0}の{1}が、{2}の{3}と接触しています",
+                        gameObject.scene.name, gameObject.name, collider.gameObject.scene.name, collider.gameObject.name);
+                }
+            }
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+		if(fflag && other.gameObject.tag == "Movable")
+        {
+            // スリープ中のオブジェクトとは接触したことにしない.
+            // ただしこれは解決にならないので、エラーを出しておく.
+            var rb = other.GetComponent<Rigidbody>();
+            if (rb.IsSleeping())
+            {
+                Debug.LogErrorFormat("{0}の{1}が、スリープ中のオブジェクト: {2}の{3}と接触しています",
+                    gameObject.scene.name, gameObject.name, other.gameObject.scene.name, other.gameObject.name);
+            }
+            else
+            {
+                ValidateCameraSwitch(other);
+                ApplyCamera(false);
+                fflag = false;
+            }
+        }
 	}
 
     private Vector3 getTargetVector()
@@ -73,6 +116,25 @@ public class gate : MonoBehaviour {
                 return new Vector3(10f, 8f, 0f);
             default:
                 return new Vector3(targetX, targetY, targetZ);
+        }
+    }
+
+    protected void ValidateCameraSwitch(Collider other)
+    {
+        var sceneName = gameObject.scene.name;
+        if (sceneName.StartsWith("ステージ"))
+        {
+            int stageNum = int.Parse(sceneName.Substring("ステージ".Length));
+
+            if (currentActiveStage != -1
+                && stageNum != currentActiveStage + 1
+                && !(stageNum == 1 && currentActiveStage == 13))
+            {
+                // カメラがステージ単位で順番に切り替わっていない疑いを検知した
+                Debug.LogErrorFormat("カメラはステージ{0}にありましたが、{1}の{2}が、{3}の{4}と接触し、切り替わりました",
+                    currentActiveStage, gameObject.scene.name, gameObject.name, other.gameObject.scene.name, other.gameObject.name);
+            }
+            currentActiveStage = stageNum;
         }
     }
 

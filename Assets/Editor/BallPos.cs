@@ -15,6 +15,22 @@ public static class BallPos
         EditorApplication.playModeStateChanged += OnChangedPlayMode;
     }
 
+    private static float[,] firstBallPosTable = new float[13, 2] {
+        {39.3f, 39.3f},
+        {39.3f, 29.3f},
+        {39.3f, 19.3f},
+        {39.3f, 9.3f},
+        {29.3f, 0.7f},
+        {19.3f, 0.7f},
+        {9.3f, 0.7f},
+        {0.7f, 10.7f},
+        {0.7f, 20.7f},
+        {0.7f, 30.7f},
+        {10.7f, 39.3f},
+        {20.7f, 39.3f},
+        {29.3f, 29.3f}
+    };
+
     private static void OnChangedPlayMode(PlayModeStateChange state) 
     {
         if(state == PlayModeStateChange.EnteredPlayMode)
@@ -33,7 +49,7 @@ public static class BallPos
                 if (child.name == "firstBall")
                 {
                     child.gameObject.transform.position
-                        += new Vector3(-10f * startNo, -5f * startNo, -8.3f * startNo);
+                        = new Vector3(firstBallPosTable[startNo,0], 3.0f, firstBallPosTable[startNo,1]);
                     break;
                 }
             }

@@ -11,7 +11,8 @@ public class clear_area : MonoBehaviour {
 	void Update () {
 	}
 
-	void OnTriggerEnter(Collider other) {
+    void OnCollisionEnter(Collision collision) {
+//	void OnTriggerEnter(Collider other) {
 		UnityEngine.SceneManagement.SceneManager.LoadScene ("clear");
 	}
 }

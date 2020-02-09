@@ -11,9 +11,23 @@ public class sound : MonoBehaviour {
 	private float x, z;
 	private AudioSource audioSource;
 
+    private Material matInstance;
+
+    public bool rotationLockEnabled = true;
+
+    // ローテーションロックのデバッグの有効／無効化
+    public const bool ENABLE_ROTATION_LOCK_DEBUG = false;
+
     void Awake()
     {
         gameObject.GetComponent<Rigidbody>().Sleep();
+
+        if (ENABLE_ROTATION_LOCK_DEBUG)
+        {
+            var renderer = GetComponent<Renderer>();
+            matInstance = Instantiate<Material>(renderer.material);
+            renderer.material = matInstance;
+        }
     }
 
     // Use this for initialization
@@ -49,5 +63,48 @@ public class sound : MonoBehaviour {
                 gameObject.GetComponent<Rigidbody>().Sleep();
             }
         }
+    }
+
+    private Collider firstCollider;
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (!rotationLockEnabled)
+            return;
+
+        if (collision.gameObject.name == "Terrain")
+            return;
+
+        var bc = GetComponent<BoxCollider>();
+        if (!bc)
+            return;
+
+        var rb = GetComponent<Rigidbody>();
+        if (firstCollider == null)
+        {
+            // どの軸をロックするべきか、オブジェクトのサイズから判定する.
+            Vector3 size = gameObject.transform.localScale;
+            if (size.x > size.z)
+            {
+                rb.constraints = RigidbodyConstraints.FreezeRotationZ | RigidbodyConstraints.FreezeRotationY;
+            }
+            else
+            {
+                rb.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY;
+            }
+
+            if (matInstance)
+                matInstance.color = Color.red;
+
+            firstCollider = collision.collider;
+        }
+        else if (firstCollider != collision.collider)
+        {
+            rb.constraints = RigidbodyConstraints.None;
+
+            if (matInstance)
+                matInstance.color = Color.green;
+        }
+
     }
 }

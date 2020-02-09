@@ -3,7 +3,7 @@
 --- !u!129 &1
 PlayerSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 15
+  serializedVersion: 18
   productGUID: 01dd62c97f124f14685d0e741eb1ba47
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
@@ -52,8 +52,8 @@ PlayerSettings:
   m_StackTraceTypes: 010000000100000001000000010000000100000001000000
   iosShowActivityIndicatorOnLoading: -1
   androidShowActivityIndicatorOnLoading: -1
-  iosAppInBackgroundBehavior: 0
   displayResolutionDialog: 1
+  iosUseCustomAppBackgroundBehavior: 0
   iosAllowHTTPDownload: 1
   allowedAutorotateToPortrait: 1
   allowedAutorotateToPortraitUpsideDown: 1
@@ -143,6 +143,9 @@ PlayerSettings:
     oculus:
       sharedDepthBuffer: 0
       dashSupport: 0
+      lowOverheadMode: 0
+      protectedContext: 0
+      v2Signing: 0
     enable360StereoCapture: 0
   protectGraphicsMemory: 0
   enableFrameTimingStats: 0
@@ -681,7 +684,7 @@ PlayerSettings:
       daydreamIconBackground: {fileID: 0}
   cloudServicesEnabled:
     Build: 1
-    Collab: 0
+    Collab: 1
     ErrorHub: 0
     Hub: 0
     UNet: 1
@@ -707,7 +710,7 @@ PlayerSettings:
   cloudProjectId: 37a03020-e055-4cf8-afbe-0289b6a36425
   framebufferDepthMemorylessMode: 0
   projectName: sig4ng-ws
-  organizationId: sig4ng2019uozu
+  organizationId: sig4ng2019okuizumo
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
