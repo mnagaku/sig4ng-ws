@@ -3,36 +3,44 @@ using UnityEngine;
 using UnityEditor;
 using UnityEngine.SceneManagement;
 
+public class EditorWindowParameter : ScriptableSingleton<EditorWindowParameter>
+{
+	public int selectedStageNo = 13;
+	public bool projectWasLoaded = false;
+}
+
 public class WSPanel : EditorWindow
 {
     private const int baseLayer = 8; // base
 
-    private int selected = 13; // 「全ステージ」を初期選択
-
-    public int getSelected() {
-        return selected;
-    }
-
     void OnGUI ()
     {
+        var god = EditorWindowParameter.instance;
         EditorGUI.BeginChangeCheck ();
         EditorGUILayout.LabelField ("ステージ選択");
-        selected = GUILayout.SelectionGrid (selected,
+        god.selectedStageNo = GUILayout.SelectionGrid (god.selectedStageNo,
             new string[]{ "ステージ01", "ステージ02", "ステージ03", "ステージ04", "ステージ05",
             "ステージ06", "ステージ07", "ステージ08", "ステージ09", "ステージ10", "ステージ11",
             "ステージ12", "ステージ13", "全ステージ"}, 1);
         if (EditorGUI.EndChangeCheck ()) {
-            Clear();
-            if(selected >= 13)
+            SetHierarchy();
+            if(god.selectedStageNo >= 13)
             {
                 Debug.Log("edit 全ステージ");
                 return;
             }
-            Debug.Log("edit stage : " + (selected + 1));
-            DisableBase();
-            EnableStageOnly(selected + 1);
+            Debug.Log("edit stage : " + (god.selectedStageNo + 1));
         }
     }
+
+    public static void SetHierarchy() {
+        var god = EditorWindowParameter.instance;
+        Clear();
+        if(god.selectedStageNo >= 13) return;
+        DisableBase();
+        EnableStageOnly(god.selectedStageNo + 1);
+    }
+
 //----------
     private static readonly string[] scenefiles = {
         "ステージ01",

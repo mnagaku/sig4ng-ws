@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
-[ExecuteInEditMode]
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+[ExecuteAlways]
 public class billboard : MonoBehaviour
 {
     private bool prevSelected = false;
@@ -14,7 +17,11 @@ public class billboard : MonoBehaviour
         if (Camera.current == null)
             return;
 
-        bool isPlaying = EditorApplication.isPlaying;
+        bool isPlaying = true;
+
+#if UNITY_EDITOR
+        isPlaying = EditorApplication.isPlaying;
+#endif
 
         // カメラ条件の絞り込み.
         if (isPlaying && Camera.current.name == "Main Camera")
@@ -27,6 +34,7 @@ public class billboard : MonoBehaviour
 
     private void UpdateTransformInEditor()
     {
+#if UNITY_EDITOR
         // エディタモードの場合は、自分が選択状態でなければビルボード処理を行わない
         if (Selection.activeGameObject == this.gameObject)
         {
@@ -57,6 +65,7 @@ public class billboard : MonoBehaviour
                 prevSelected = false;
             }
         }
+#endif
     }
 
     private void UpdateTransformInGame()

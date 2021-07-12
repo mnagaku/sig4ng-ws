@@ -9,7 +9,7 @@ public class WSButton : MonoBehaviour
     [InitializeOnLoadMethod]
     static void Example()
     {
-        SceneView.onSceneGUIDelegate += OnGUI;
+        SceneView.duringSceneGui += OnGUI;
     }
 
     static void ContactFloor(GameObject tgtObj)

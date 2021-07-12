@@ -55,6 +55,8 @@ public static class ReopenScenes
             var inspWndType = editorAsm.GetType("UnityEditor.InspectorWindow");
             var window = EditorWindow.GetWindow<WSPanel> (inspWndType);
             window.titleContent = new GUIContent("WS専用パネル");
+            var god = EditorWindowParameter.instance;
+            god.projectWasLoaded = true;
         };
     }
 }

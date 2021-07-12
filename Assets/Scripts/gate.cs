@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEditor;
 
-[ExecuteInEditMode]
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
+
+[ExecuteAlways]
 public class gate : MonoBehaviour {
 
     static int currentActiveStage = -1;
@@ -39,7 +42,12 @@ public class gate : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-        bool isInEditor = !EditorApplication.isPlaying;
+        bool isInEditor = false;
+
+#if UNITY_EDITOR
+        isInEditor = !EditorApplication.isPlaying;
+#endif
+
         if (isInEditor)
         {
             UpdateInEditor();

@@ -35,8 +35,8 @@ public static class BallPos
     {
         if(state == PlayModeStateChange.EnteredPlayMode)
         {
-            var w = EditorWindow.GetWindow<WSPanel>(typeof(WSPanel));
-            var startNo = w.getSelected();
+            var god = EditorWindowParameter.instance;
+            var startNo = god.selectedStageNo;
             startNo = startNo >= 13 ? 0 : startNo;
 
             var scene = SceneManager.GetSceneByName("共通");
